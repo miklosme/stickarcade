@@ -214,15 +214,10 @@ export default function App() {
     if (id === 'menu') game.backFromScores();
     if (id === 'back') setDialog('leave');
     if (id === 'punch' || id === 'kick') game.attack(id);
-    if (id === 'facebook')
-      window.open(
-        'https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/pages/Stickarcade/548982765215083',
-        '_blank',
-        'noopener,noreferrer',
-      );
+    if (id === 'facebook') window.open('https://stickarcade.miklos.dev', '_blank', 'noopener,noreferrer');
     if (id === 'twitter')
       window.open(
-        `https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just achieved ${game.score || game.board.entries[0]!.score} score in #StickArcade! https://www.facebook.com/pages/Stickarcade/548982765215083`)}`,
+        `https://x.com/intent/tweet?text=${encodeURIComponent(`I just achieved ${game.score || game.board.entries[0]!.score} score in #StickArcade! https://stickarcade.miklos.dev`)}`,
         '_blank',
         'noopener,noreferrer',
       );
