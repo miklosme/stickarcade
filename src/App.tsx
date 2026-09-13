@@ -205,6 +205,7 @@ export default function App() {
   }, [game, audio]);
   const action = (id: string) => {
     audio.unlock();
+    if (id === 'sound') audio.setEnabled(!audio.enabled);
     if (id === 'play') game.start();
     if (id === 'tutorial') game.start(true);
     if (id === 'scores') game.showScores();
@@ -297,6 +298,43 @@ export default function App() {
           buttons(game).map((button) => (
             <OriginalButton key={button.id} button={button} scale={size.scale} action={action} />
           ))}
+        {textures && (game.mode === 'menu' || game.paused) && (
+          <button
+            type="button"
+            className="sound-button"
+            aria-label="Sound"
+            aria-pressed={audio.enabled}
+            title={audio.enabled ? 'Mute sound' : 'Enable sound'}
+            style={{
+              right: 16 * size.scale,
+              bottom: 16 * size.scale,
+              width: 48 * size.scale,
+              height: 48 * size.scale,
+              padding: 10 * size.scale,
+            }}
+            onPointerDown={(event) => event.stopPropagation()}
+            onPointerUp={(event) => event.stopPropagation()}
+            onClick={(event) => {
+              event.stopPropagation();
+              action('sound');
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <path
+                d="M9 18V5l12-2v13M9 9l12-2"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <ellipse cx="6" cy="18" rx="3" ry="2.5" fill="currentColor" />
+              <ellipse cx="18" cy="16" rx="3" ry="2.5" fill="currentColor" />
+              {!audio.enabled && (
+                <path d="M3 3l18 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              )}
+            </svg>
+          </button>
+        )}
       </div>
       {dialog && <OriginalDialog kind={dialog} name={game.board.name} close={closeDialog} />}
     </main>

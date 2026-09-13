@@ -58,6 +58,31 @@ main {
   outline-offset: 3px;
   border-radius: 8px;
 }
+.sound-button {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  background: #111e;
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.sound-button svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.sound-button:hover {
+  background: #333;
+}
+.sound-button:focus-visible {
+  outline: 3px solid #ffd200;
+  outline-offset: 3px;
+}
 .original-dialog {
   color-scheme: light;
   color: #111;
