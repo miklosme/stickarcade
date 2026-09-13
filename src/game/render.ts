@@ -245,30 +245,6 @@ export function buttons(g: Game): GameButton[] {
   const b: GameButton[] = [];
   if (g.player.alive && g.guiVisible)
     b.push({ id: 'pause', label: 'Pause', sprite: 's_button_pause', x: 0, y: g.guiShift });
-  if (g.mobile && g.player.visible && g.player.alive) {
-    // The archived control objects have no placement/wiring. Use the original
-    // tutorial's tap anchors and original button artwork, scaled only as UI.
-    b.push({
-      id: 'punch',
-      label: 'Punch',
-      sprite: 's_controll_buttons',
-      frame: 1,
-      x: g.width - 200,
-      y: 245,
-      scale: 0.7,
-      press: true,
-    });
-    b.push({
-      id: 'kick',
-      label: 'Kick',
-      sprite: 's_controll_buttons',
-      frame: 0,
-      x: g.width - 200,
-      y: 345,
-      scale: 0.7,
-      press: true,
-    });
-  }
   return b;
 }
 function drawActor(b: Batch, e: Actor, g: Game) {

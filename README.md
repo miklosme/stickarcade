@@ -35,10 +35,9 @@ bun run preview
 - **Left/right arrows:** move.
 - **S:** punch; **D:** kick.
 - **Escape:** pause/resume. The original pause/continue/back buttons also work.
-- **Touch:** drag/swipe the left half to move; lift to stop. Use the original
-  P/K virtual buttons on the right to punch/kick. Movement and attacks support
-  simultaneous touches. Tapping the right playfield also attacks using the
-  original split at `GROUND_LEVEL - 70`.
+- **Touch:** drag/swipe the left half to move; lift to stop. Tap the right
+  playfield above the ground line to punch or below it to kick (the split is
+  `GROUND_LEVEL - 70`). Movement and attacks support simultaneous touches.
 
 The original tutorial automatically plays when the best score is below 3,000.
 Move more than 400 world units in both directions to complete the movement

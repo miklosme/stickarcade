@@ -265,7 +265,7 @@ export default function App() {
         ref={stage}
         className="game"
         role="application"
-        aria-label="StickArcade. Left and right arrows to move, S to punch, D to kick. On touch screens, swipe the left side to move and use the punch and kick buttons."
+        aria-label="StickArcade. Left and right arrows to move, S to punch, D to kick. On touch screens, swipe the left side to move; tap the right side above the ground line to punch or below it to kick."
         style={{ width: size.width, height: size.height }}
         onPointerDown={startGesture}
         onPointerMove={moveGesture}
