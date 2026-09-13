@@ -1,0 +1,6 @@
+src/game/original.json
+public
+dist
+vendor
+.cache
+bun.lock
