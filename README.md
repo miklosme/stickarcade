@@ -1,5 +1,13 @@
 # StickArcade
 
+I made this game in highschool (2009).
+
+Ported to web using `GPT-6 Astra`.
+
+Play it at <https://stickarcade.miklos.dev>
+
+---
+
 A browser port of the GameMaker project in `vendor/StickArcade.gmz`, built with
 Vite, React, and React Three Fiber. All artwork, animation frames, sound effects,
 bitmap fonts, menus, and HUD graphics come from the original archive.
