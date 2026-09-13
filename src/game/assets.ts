@@ -5,6 +5,8 @@ export const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 export const WORLD_WIDTH = assets.room.width,
   HEIGHT = assets.room.height,
   GROUND = 380;
+// Keep the existing 16:9 portrait playfield as the gameplay viewport everywhere.
+export const VIEW_WIDTH = Math.floor((HEIGHT * 16) / 9);
 export const HZ = assets.room.speed,
   STEP = 1 / HZ;
 export const PLAYER_SPEED = 15,
@@ -76,10 +78,8 @@ export function intersectsLine(e: MaskInstance, x1: number, y1: number, x2: numb
   return true;
 }
 export function layout(width: number, height: number) {
-  // GMX uses a fixed height and landscape aspect ratio. Portrait fits the whole
-  // landscape game; no scaling or resizing can change a world coordinate.
-  const aspect = width < height ? 16 / 9 : clamp(width / height, 4 / 3, WORLD_WIDTH / HEIGHT);
-  const logicalWidth = Math.floor(HEIGHT * aspect),
-    scale = Math.min(width / logicalWidth, height / HEIGHT);
-  return { logicalWidth, width: logicalWidth * scale, height: HEIGHT * scale, scale };
+  // Resize only the presentation: widening the camera also changes spawning
+  // and encounter timing. The centered stage leaves unused screen space black.
+  const scale = Math.min(width / VIEW_WIDTH, height / HEIGHT);
+  return { logicalWidth: VIEW_WIDTH, width: VIEW_WIDTH * scale, height: HEIGHT * scale, scale };
 }

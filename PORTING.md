@@ -58,11 +58,13 @@ come from the original font sheets; score digits preserve proportional spacing.
   unfinished path to the original movement/attack events. It uses the original
   P/K artwork at the tutorial tap anchors `(SCREEN_WIDTH - 200, 245/345)`, scaled
   to 0.7 for two distinct hit targets. No new visible controls are introduced.
-- Landscape keeps the original fixed logical height of 480 and adapts view width
-  to aspect ratio. Portrait fits a 16:9 landscape playfield with letterboxing.
-  Extreme aspect ratios are bounded to a 4:3 minimum view and the 2000-unit room
-  width, preventing invalid cameras/spawns. Rotating or resizing changes the
-  viewport, never actor positions or speeds.
+- Every screen fits the same 853 × 480 logical playfield, retaining the existing
+  portrait layout and the original `floor(480 × 16 / 9)` baseline. The archived
+  runner derived its width from the display ratio; this browser port fixes that
+  ratio so screen size cannot change camera coverage or viewport-relative
+  spawns. One uniform scale fits the whole playfield, centered with black space
+  on either side on wide screens or above and below on tall screens. Rotating
+  or resizing changes only presentation, never the camera or gameplay geometry.
 - The original INI scoreboard becomes `localStorage`. Saving immediately at
   death prevents losing the run if the page closes during the original delayed
   name prompt. Empty names keep the generated player name. Names too long for

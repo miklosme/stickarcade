@@ -10,6 +10,7 @@ import {
   PLAYER_ACCELERATION,
   PLAYER_SPEED,
   STEP,
+  VIEW_WIDTH,
   WORLD_WIDTH,
 } from './assets';
 import { Scoreboard } from './scores';
@@ -154,7 +155,7 @@ export class Game {
   accumulator = 0;
   pendingHits: { type: Attack; x: number; y: number }[] = [];
   constructor(
-    public width = 853,
+    public width = VIEW_WIDTH,
     public board = new Scoreboard(),
     public random = Math.random,
   ) {

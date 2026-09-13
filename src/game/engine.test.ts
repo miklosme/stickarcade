@@ -113,18 +113,51 @@ describe('Original coordinate and timing contracts', () => {
     g.resize(1040);
     expect({ x: g.player.x, y: g.player.y, speed: g.player.speed }).toEqual(playerBefore);
   });
-  test('portrait and landscape fit without anisotropic scaling or cropping', () => {
+  test('every screen fits the same 853 × 480 viewport without stretching or cropping', () => {
     for (const [w, h] of [
       [390, 844],
       [844, 390],
+      [768, 1024],
+      [1024, 768],
+      [600, 600],
       [1280, 720],
       [2560, 600],
+      [3016, 670],
+      [3840, 1080],
     ]) {
       const l = layout(w!, h!);
       expect(l.width).toBeLessThanOrEqual(w! + 0.001);
       expect(l.height).toBeLessThanOrEqual(h! + 0.001);
       expect(l.width / l.logicalWidth).toBeCloseTo(l.height / 480);
-      expect(l.logicalWidth).toBeLessThanOrEqual(2000);
+      expect(l.logicalWidth).toBe(853);
+      // Fill the limiting dimension, leaving the remaining dimension black.
+      expect(Math.min(w! - l.width, h! - l.height)).toBeCloseTo(0);
+    }
+  });
+  test('screen resizing preserves camera follow, actor geometry, and spawn positions mid-run', () => {
+    const g = ready();
+    g.keyDown('ArrowRight');
+    ticks(g, 20);
+    const camera = g.camera,
+      viewX = g.viewX,
+      player = { ...g.player },
+      mask = bounds(g.player);
+    for (const [w, h] of [
+      [3016, 670],
+      [390, 844],
+      [844, 390],
+      [1024, 768],
+    ]) {
+      g.resize(layout(w!, h!).logicalWidth);
+      expect(g.camera).toBe(camera);
+      expect(g.viewX).toBe(viewX);
+      expect(g.player).toEqual(player);
+      expect(bounds(g.player)).toEqual(mask);
+      g.killed = 0;
+      expect(g.spawnEnemy('bean').x).toBe(viewX + 853 + 150);
+      g.killed = 1;
+      expect(g.spawnEnemy('sheep').x).toBe(viewX - 150);
+      expect(g.spawnEnemy('oct').x).toBe(viewX + 426);
     }
   });
 });

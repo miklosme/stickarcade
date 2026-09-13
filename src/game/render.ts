@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { assets, GROUND, HEIGHT, clamp } from './assets';
+import { assets, GROUND, HEIGHT, VIEW_WIDTH, clamp } from './assets';
 import type { Region } from './types';
 import { Game, type Actor } from './engine';
 
@@ -443,9 +443,9 @@ export class GameRenderer {
   world = new THREE.Scene();
   surface = new THREE.Scene();
   screen = new THREE.Scene();
-  camera = new THREE.OrthographicCamera(0, 853, 0, HEIGHT, 0.1, 100);
-  worldTarget = new THREE.WebGLRenderTarget(853, HEIGHT, { depthBuffer: false });
-  surfaceTarget = new THREE.WebGLRenderTarget(853, HEIGHT, { depthBuffer: false });
+  camera = new THREE.OrthographicCamera(0, VIEW_WIDTH, 0, HEIGHT, 0.1, 100);
+  worldTarget = new THREE.WebGLRenderTarget(VIEW_WIDTH, HEIGHT, { depthBuffer: false });
+  surfaceTarget = new THREE.WebGLRenderTarget(VIEW_WIDTH, HEIGHT, { depthBuffer: false });
   worldBatch: Batch;
   groundBatch: Batch;
   uiBatch: Batch;
